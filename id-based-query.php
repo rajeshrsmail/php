@@ -13,26 +13,79 @@ mysql_select_db("abcddb");
 </head>
 
 <body>
-<table width="200" border="0">
-  <tr>
-    <th scope="row">Enter the ID you wanna search</th>
-    <?php
+ 
+ 
+<table border="1" width="200" height="45">
+<tr>
+ <td>Select the ID  </td>
+ <td><select><option value='$b[0]'>
+
+<?php
 
 
-	$a=mysql_query("select * from tb1");
-	while ($b=mysql_fetch_row($a));
+	$a=mysql_query("select id from tb1");	  
+	while ($b=mysql_fetch_row($a))
 	{
-		echo "<td><option value='$b[0]'>$b[0]</option>"
+//		echo "<td><option value='$b[0]'>$b[0]</option></td>";
+
+
+echo " <option value='$b[0]'> $b[0]</option>" ;
 	}
 	?>
+ </select></td>;
+ 
+</tr>
+
+
+	
     
   </tr>
+
   <tr>
     <th colspan="2" scope="row"><input type="submit" name="submit" id="submit" value="ok"></th>
   </tr>
+ 
 </table>
-
-
-	 
+<p>
+  <?php
+if (isset($_REQUEST['submit']))
+{
+$c=$_REQUEST['$b[0]'];
+echo $c;
+}
+else
+{
+echo "not possible";
+}
+$d=mysql_query("select * from tb1 where id=$c");
+?>
+   
+   
+   
+  ?>	 
+</p>
+<p>&nbsp;</p>
+<form name="form1" method="post" action="">
+  <table width="200" border="0">
+    <tr>
+      <th scope="row">ID</th>
+      <td>Name</td>
+      <td>Phone</td>
+    </tr>
+    <tr>
+    
+    while($e=mysql_fetch_row($d))
+      {
+      
+      echo "
+      <th scope='row'>$d[0]</th>
+      
+      <td>$d[1]</td>
+            <td>"$d[2]</td>"
+      }
+    </tr>
+  </table>
+</form>
+<p>&nbsp;</p>
 </body>
 </html>

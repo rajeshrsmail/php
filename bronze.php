@@ -39,6 +39,7 @@ mysql_select_db("copper");
     <?php
   if(isset($_REQUEST['submit']))
    $da=$_REQUEST['id1'];
+   echo $da;
 
   $sql_query=mysql_query("select * from tb1 where id=$da");
   $db=mysql_fetch_row($sql_query); 

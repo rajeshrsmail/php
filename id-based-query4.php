@@ -57,36 +57,66 @@ $dd=mysql_fetch_row($qq);
 }
 ?>
 </p>
-<table width="200" border="1">
+<table width="329" border="1">
   <tr>
-    <td>ID</td>
-   <td><?php echo "$dd[0]"; ?></td>
+    <td width="153">ID</td>
+   <td width="160"><input type="text" name="t1" id="t1" value="<?php echo "$dd[0]";?>" readonly></td>
    </tr>
    
    <tr>
     <td>Name</td>
-    <td><?php echo "$dd[1]"; ?></td>
+    <td>
+      <input type="text" name="t2" id="t2" value=" <?php echo "$dd[1]"; ?>  "></td>
     </tr>
     
     <tr>
     <td>Phone</td>
-    <td><?php echo "$dd[2]"; ?></td>    
+    <td>
+      <input type="text" name="t3" id="t3" value=" <?php echo "$dd[2]"; ?>  " ></td>    
     </tr>
     
     <tr>
     <td>Email</td>
-    <td><?php echo "$dd[3]"; ?></td>
+    <td>
+      <input type="text" name="t4" id="t4" value="<?php echo "$dd[3]"; ?>"></td>
     </tr>
     
     <tr>
     <td>Notes</td>
-    <td><?php echo "$dd[4]"; ?></td>
-  </tr> 
+    <td>
+      <textarea name="t5" id="t5" cols="45" rows="5"><?php echo "$dd[4]"; ?></textarea></td>
+  </tr>
+    <tr>
+      <td colspan="2"><div align="center">
+        <input type="submit" name="t6" id="t6" value="Update">
+      </div></td>
+    </tr> 
     
     
     
    
 </table>
+
+<?php
+if(isset($_REQUEST['t6']))
+{
+$k1=$_REQUEST['t1']; 
+$k2=$_REQUEST['t2'];
+$k3=$_REQUEST['t3'];
+$k4=$_REQUEST['t4'];
+$k5=$_REQUEST['t5'];
+ 
+
+mysql_query("update phonelist set Name='$k2', Phone='$k3', Email='$k4', Notes='$k5' where ID=$k1");
+echo $cc;
+if (mysql_affected_rows() >=1) 
+	echo "inserted"; 
+	else
+ 	echo "not inserted";
+}
+
+?>
+
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 </form>
